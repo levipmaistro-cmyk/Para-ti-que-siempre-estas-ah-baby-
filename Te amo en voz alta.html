@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para mi querida Alison 💖</title>
+  <!-- Fuentes de Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #ff4d88;
+      --secondary-color: #ffb3c6;
+      --bg-gradient: linear-gradient(135deg, #ffe6f0 0%, #fff0f5 50%, #ffffff 100%);
+    }
+
+    body {
+      background: var(--bg-gradient);
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      color: #444;
+      overflow-x: hidden;
+    }
+
+    /* Pantalla de Bienvenida Inicial Estilo Regalo/Sobre */
+    #pantallaInicial {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: var(--bg-gradient);
+      position: relative;
+    }
+
+    .tarjeta-regalo {
+      background: white;
+      padding: 40px 50px;
+      border-radius: 25px;
+      box-shadow: 0 15px 35px rgba(255, 77, 136, 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      max-width: 400px;
+      width: 90%;
+      border: 2px solid var(--secondary-color);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .subtitulo-regalo {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #888;
+      margin: 0;
+    }
+
+    .titulo-regalo {
+      font-family: 'Great Vibes', cursive;
+      font-size: 48px;
+      color: var(--primary-color);
+      margin: 0;
+    }
+
+    /* Ilustración de Sobre Romántico */
+    .sobre-contenedor {
+      background: #e03572;
+      width: 180px;
+      height: 110px;
+      border-radius: 12px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 8px 20px rgba(214, 51, 132, 0.3);
+      margin: 10px 0;
+    }
+
+    .sobre-tapa {
+      position: absolute;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-left: 90px solid transparent;
+      border-right: 90px solid transparent;
+      border-top: 65px solid #ff4d88;
+    }
+
+    .sobre-sello {
+      position: absolute;
+      background: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      z-index: 2;
+    }
+
+    #botonAmor {
+      padding: 14px 30px;
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+      background: var(--primary-color);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(255, 77, 136, 0.4);
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    #botonAmor:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 25px rgba(255, 77, 136, 0.6);
+      background: #e03572;
+    }
+
+    /* Portada / Contenido Principal (Oculto al inicio) */
+    #portada {
+      display: none;
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #portada h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 50px;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    #portada p {
+      font-size: 18px;
+      color: #666;
+    }
+
+    /* Reproductor de Música Estilizado con Línea de Reproducción y Controles Avanzados */
+    .reproductor-flotante {
+      background: white;
+      padding: 20px 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      display: inline-flex;
+      flex-direction: column;
+      gap: 15px;
+      margin: 25px 0;
+      border: 2px solid var(--secondary-color);
+      max-width: 380px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .reproductor-superior {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .album-portada {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .info-cancion {
+      text-align: left;
+      flex-grow: 1;
+    }
+
+    .info-cancion h4 {
+      margin: 0 0 3px 0;
+      font-size: 16px;
+      color: var(--primary-color);
+    }
+
+    .tiempos-audio {
+      font-size: 12px;
+      color: #888;
+      margin: 0;
+    }
+
+    /* Controles de Reproducción */
+    .controles-audio {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .controles-audio button {
+      background: #fff0f5;
+      border: 1px solid var(--secondary-color);
+      color: var(--primary-color);
+      padding: 8px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+
+    .controles-audio button:hover {
+      background: var(--secondary-color);
+      color: white;
+    }
+
+    #btnMusica {
+      background: var(--primary-color);
+      border: none;
+      color: white;
+      padding: 8px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    #btnMusica:hover {
+      background: #e03572;
+    }
+
+    /* Línea de reproducción (Progreso) */
+    .barra-progreso-container {
+      width: 100%;
+      background: #ffe6f0;
+      height: 6px;
+      border-radius: 5px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .barra-progreso {
+      background: var(--primary-color);
+      height: 100%;
+      width: 0%;
+      border-radius: 5px;
+      transition: width 0.1s linear;
+    }
+    /* Contador de Amor */
+    #contadorAmor {
+      background: white;
+      border-radius: 15px;
+      padding: 15px;
+      margin: 20px auto;
+      box-shadow: 0 5px 15px rgba(255, 77, 136, 0.15);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--primary-color);
+      max-width: 520px;
+      }
+
+    /* Recuerdos / Galería interactiva 3D */
+    #recuerdos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin: 40px 0;
+    }
+
+    .recuerdo {
+      width: 220px;
+      height: 280px;
+      perspective: 1000px;
+    }
+
+    .carta {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      border-radius: 15px;
+    }
+
+    .carta.girar {
+      transform: rotateY(180deg);
+    }
+
+    .frente, .atras {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .frente img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .atras {
+      background: white;
+      border: 2px solid var(--secondary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: var(--primary-color);
+      transform: rotateY(180deg);
+      padding: 20px;
+      box-sizing: border-box;
+      font-weight: 500;
+    }
+
+    /* Carta Romántica Estilizada */
+    #cartaRomantica {
+      margin: 40px auto;
+      background: white;
+      border: 2px dashed var(--secondary-color);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(255,77,136,0.1);
+      text-align: left;
+    }
+
+    #cartaRomantica h2 {
+      font-family: 'Great Vibes', cursive;
+      color: var(--primary-color);
+      font-size: 40px;
+      margin-top: 0;
+      text-align: center;
+    }
+
+    #cartaRomantica p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    /* Corazones animados flotantes */
+    .corazon {
+      position: fixed;
+      top: -30px;
+      font-size: 22px;
+      user-select: none;
+      z-index: 999;
+      animation: caer linear forwards;
+    }
+
+    @keyframes caer {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Pantalla Inicial Estilo Regalo / Sobre -->
+  <div id="pantallaInicial">
+    <div class="tarjeta-regalo">
+      <p class="subtitulo-regalo">Un regalo para ti</p>
+      <h2 class="titulo-regalo">Miss Alison de Pinel</h2>
+      
+      <div class="sobre-contenedor">
+        <div class="sobre-tapa"></div>
+        <div class="sobre-sello">💖</div>
+      </div>
+
+      <button id="botonAmor">Toca para abrir 💌</button>
+    </div>
+  </div>
+
+  <!-- Portada / Contenido Oculto -->
+  <div id="portada">
+    <h1>Cosas lindas para mi novia</h1>
+    <p>Eres mi razón de sonreír, mi inspiración y mi más hermoso regalo de la vida.</p>
+
+    <!-- Reproductor de música mejorado con barra y botones -10s / +10s -->
+    <div class="reproductor-flotante">
+      <div class="reproductor-superior">
+        <img src="images (1).jpg" alt="Portada de la canción" class="album-portada">
+        <div class="info-cancion">
+          <h4>Nuestra Canción 🎵</h4>
+          <p class="tiempos-audio"><span id="tiempoActual">0:00</span> / <span id="duracionTotal">0:00</span></p>
+        </div>
+      </div>
+
+      <!-- Barra de reproducción visual -->
+      <div class="barra-progreso-container" id="contenedorBarra" onclick="cambiarProgreso(event)">
+        <div class="barra-progreso" id="barraProgreso"></div>
+      </div>
+
+      <!-- Controles: Retroceder 10s, Play/Pause, Adelantar 10s -->
+      <div class="controles-audio">
+        <button onclick="retroceder10()">⏪ -10s</button>
+        <button id="btnMusica" onclick="toggleMusica()">Reproducir 🎶</button>
+        <button onclick="adelantar10()">+10s ⏩</button>
+      </div>
+
+      <audio id="audioAmor" preload="metadata" loop>
+        <source src="Mon Amour.mpeg" type="audio/mpeg">
+        Tu navegador no soporta audio.
+      </audio>
+    </div>
+
+    <!-- Contador de tiempo juntos -->
+    <div id="contadorAmor">
+      ⏳ Juntos desde el primer latido: <span id="tiempoJuntos">Calculando...</span>
+    </div>
+
+    <!-- Recuerdos Interactivos -->
+    <h2 style="font-family: 'Great Vibes', cursive; font-size: 42px; color: #ff4d88; margin-top: 40px;">Nuestros Recuerdos</h2>
+    <p style="font-size: 14px; color: #888; margin-top: -10px;">(Haz clic en cada tarjeta para descubrir el mensaje oculto)</p>
+    
+    <div id="recuerdos">
+      <div class="recuerdo">
+        <div class="carta" onclick="this.classList.toggle('girar')">
+          <div class="frente"><img src="WhatsApp Image 2026-07-06 at 10.12.21 AM (2).jpeg" alt="Foto 1"></div>
+          <div class="atras">Nuestro primer paseo juntos 🌸</div>
+        </div>
+      </div>
+      
+      <div class="recuerdo">
+        <div class="carta" onclick="this.classList.toggle('girar')">
+          <div class="frente"><img src="sonrisa.jpeg" alt="Foto 2"></div>
+          <div class="atras">La tarde que me regalaste tu sonrisa 💖</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carta Romántica -->
+    <div id="cartaRomantica">
+      <h2>Mi Querida y Hermosa Alison</h2>
+      <p>
+        Hoy quiero abrir mi corazón y decirte lo mucho que significas para mí.<br><br>
+        Cada día contigo es un regalo único, cada palabra tuya es música para mi alma y tu presencia ilumina hasta mis días más grises. Eres mi compañera de vida, mi alegría constante y mi más grande inspiración.<br><br>
+        Te amo con cada latido de mi corazón y siempre estaré profundamente agradecido con la vida por tenerte a mi lado.<br><br>
+        <strong style="font-family: 'Great Vibes', cursive; font-size: 28px; color: #ff4d88; display: block; text-align: right;">Con amor eterno, tu Levi. 💕</strong>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const boton = document.getElementById('botonAmor');
+    const pantallaInicial = document.getElementById('pantallaInicial');
+    const portada = document.getElementById('portada');
+    const audio = document.getElementById('audioAmor');
+    const btnMusica = document.getElementById('btnMusica');
+    const barraProgreso = document.getElementById('barraProgreso');
+    const contenedorBarra = document.getElementById('contenedorBarra');
+    const tiempoActualTxt = document.getElementById('tiempoActual');
+    const duracionTotalTxt = document.getElementById('duracionTotal');
+
+    // Animación de corazones cayendo
+    function crearCorazon() {
+      const corazon = document.createElement('div');
+      corazon.classList.add('corazon');
+      const emojis = ['❤️', '💖', '✨', '💕', '🌹'];
+      corazon.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      corazon.style.left = Math.random() * window.innerWidth + 'px';
+      corazon.style.fontSize = (Math.random() * 15 + 18) + 'px';
+      
+      const duracion = Math.random() * 3 + 4; 
+      corazon.style.animationDuration = duracion + 's';
+      
+      document.body.appendChild(corazon);
+      setTimeout(() => corazon.remove(), duracion * 1000);
+    }
+
+    // Botón principal de entrada
+    boton.addEventListener('click', () => {
+      pantallaInicial.style.display = 'none';
+      portada.style.display = 'block';
+
+      audio.play().then(() => {
+        btnMusica.textContent = "Pausar ⏸️";
+      }).catch(e => {
+        console.log("Reproducción automática bloqueada por el navegador");
+      });
+
+      for (let i = 0; i < 40; i++) {
+        setTimeout(crearCorazon, i * 80);
+      }
+
+      setInterval(crearCorazon, 600);
+    });
+
+    // Formatear segundos a formato MM:SS
+    function formatearTiempo(segundos) {
+      const minutos = Math.floor(segundos / 60);
+      const segsRestantes = Math.floor(segundos % 60);
+      return `${minutos}:${segsRestantes < 10 ? '0' : ''}${segsRestantes}`;
+    }
+
+    // Cargar duración total cuando el audio esté listo
+    audio.addEventListener('loadedmetadata', () => {
+      duracionTotalTxt.textContent = formatearTiempo(audio.duration);
+    });
+
+    // Actualizar barra de progreso y tiempo actual en tiempo real
+    audio.addEventListener('timeupdate', () => {
+      if (audio.duration) {
+        const porcentaje = (audio.currentTime / audio.duration) * 100;
+        barraProgreso.style.width = `${porcentaje}%`;
+        tiempoActualTxt.textContent = formatearTiempo(audio.currentTime);
+      }
+    });
+
+    // Permitir hacer clic en la barra para saltar a esa parte de la canción
+    function cambiarProgreso(e) {
+      const anchoTotal = contenedorBarra.clientWidth;
+      const clicX = e.offsetX;
+      const porcentaje = clicX / anchoTotal;
+      audio.currentTime = porcentaje * audio.duration;
+    }
+
+    // Botones de adelantar y retroceder 10 segundos
+    function retroceder10() {
+      audio.currentTime = Math.max(0, audio.currentTime - 10);
+    }
+
+    function adelantar10() {
+      audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+    }
+
+    // Control manual de música
+    function toggleMusica() {
+      if (audio.paused) {
+        audio.play();
+        btnMusica.textContent = "Pausar ⏸️";
+      } else {
+        audio.pause();
+        btnMusica.textContent = "Reproducir 🎶";
+      }
+    }
+
+    // Contador de tiempo juntos desde el 30/11/2025 a las 12:29
+    function actualizarContador() {
+      const fechaInicio = new Date('2025-11-30T12:29:00');
+      const ahora = new Date();
+      const diferencia = ahora - fechaInicio;
+
+      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diferencia / 1000 / 60) % 60);
+
+      document.getElementById('tiempoJuntos').textContent = `${dias} días, ${horas} horas y ${minutos} minutos`;
+    }
+    setInterval(actualizarContador, 1000);
+    actualizarContador();
+  </script>
+
+</body>
+</html>
